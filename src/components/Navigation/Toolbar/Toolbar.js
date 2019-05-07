@@ -1,12 +1,13 @@
 import React from 'react';
+
 import classes from './Toolbar.css';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 
-
-const toolbar = (props) => (
-    <header className={classes.Toolbar }>
-        <div onClick={props.clicked}>Menu</div>
+const toolbar = ( props ) => (
+    <header className={classes.Toolbar}>
+        <DrawerToggle clicked={props.drawerToggleClicked} />
         <div className={classes.Logo}>
             <Logo />
         </div>
@@ -17,6 +18,3 @@ const toolbar = (props) => (
 );
 
 export default toolbar;
-
-//For Logo to adjust as per the size of the device, we wrapped it into another <div> and defined
-// logo height in the sidedrawer.css file. other logo styling parameters will be picked from logo.css
