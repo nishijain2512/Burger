@@ -9,6 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import axios from '../../axios-orders';
+import ReactGA from 'react-ga';
 
 export class BurgerBuilder extends Component {
     // constructor(props) {
@@ -21,6 +22,9 @@ export class BurgerBuilder extends Component {
 
     componentDidMount () {
         this.props.onInitIngredients();
+        ReactGA.set({page: this.props.history.location.pathname});
+        ReactGA.pageview(this.props.history.location.pathname);
+        console.log('Pathname : ' + this.props.history.location.pathname);
     }
 
     updatePurchaseState ( ingredients ) {

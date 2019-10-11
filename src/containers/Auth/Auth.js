@@ -6,6 +6,7 @@ import Button from '../../components/UI/Button/Button';
 import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import ReactGA from 'react-ga';
 
 class Auth extends Component {
 
@@ -44,6 +45,9 @@ class Auth extends Component {
     }
 
     componentDidMount () {
+        ReactGA.set({page: this.props.history.location.pathname});
+        ReactGA.pageview(this.props.history.location.pathname);
+        console.log('Pathname : ' + this.props.history.location.pathname);
         if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
             this.props.onSetAuthRedirectPath();
         }
