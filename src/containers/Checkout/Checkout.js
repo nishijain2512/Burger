@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 //import axios from 'axios';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from '../ContactData/ContactData';
+import ReactGA from 'react-ga';
 
 class Checkout extends Component {
+    componentDidMount() {
+        ReactGA.set({page: this.props.history.location.pathname});
+        ReactGA.pageview(this.props.history.location.pathname);
+        console.log('Pathname : ' + this.props.history.location.pathname);
+    }
 
     checkoutCancelledHandler = () => {
         this.props.history.goBack();

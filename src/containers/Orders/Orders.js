@@ -5,12 +5,15 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import ReactGA from 'react-ga';
 
 class Orders extends Component {
 
     componentDidMount () {
-        console.log("[ORDERS.js] TOKEN = " + this.props.token)
         this.props.onFetchOrders(this.props.token, this.props.userId);
+        ReactGA.set({page: this.props.history.location.pathname});
+        ReactGA.pageview(this.props.history.location.pathname);
+        console.log('Pathname : ' + this.props.history.location.pathname);
     }
     render () {
         let orders = <Spinner />
